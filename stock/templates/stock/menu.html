@@ -1,0 +1,44 @@
+<h2 style="color: DarkOrange ">Hi, welcome to the stock of {{full_name}} profilio!</h2>
+<p> 
+	
+<table border="1" style="color: green; width:100%">
+	<tr> 
+		<td>City</td>
+		<td>State</td>
+		
+		<td>Weather</td>
+		<td>Temp</td>
+		<td>Humid</td>
+		<td>Wind</td>
+		<td>Wind_mph</td>
+	</tr>	
+	<tr>
+{%for  c in weather %}
+{% if "http://icons.wxug.com" in c %}	
+	<td><img src='{{c}}' ></td>
+	
+{% else %}
+	
+	<td>{{c}}</td>
+
+	{% endif %}
+
+{%endfor%}
+</tr>
+
+</table>
+
+
+	</p style="color: orange">
+<h4> <li> Click <a href="/stock/location">here</a> to update to {{full_name}} profile</li></h4>
+<p>
+<li >Click <a href="/stock/list">here</a> to list your stock profiloi</li>
+
+ <li >Click <a href="/stock/update">here</a> to purchase any stock and add it in your profilio</li>
+
+<li >Click <a href="/stock/delete">here</a> to sell any stock in your profolio</li>
+<li >Click <a href="/stock/logout">here</a> to logout.</li>
+
+<li >Click <a href="/stock/register">here</a> to register.</li>
+</p>
+

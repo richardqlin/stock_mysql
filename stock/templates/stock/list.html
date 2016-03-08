@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 style="color:Purple">Hi, welcome to the stock profilio of {{full_name }}</h1>
+<div class='col-md-4 col-md-offset2'>
+<h3 style="color:blue;">Weather Report </h3>
+<aside>	
+<p> 
+<table border="1" style='color: green; width:100%'>
+	<tr>
+		<td>City</td>
+		<td>State</td>
+		
+		<td>Weather</td>
+		<td>Temp</td>
+		<td>Humid</td>
+		<td>Wind</td>
+		<td>Wind_mph</td>
+	</tr>	
+	<tr>
+{%for  c in weather%}	
+	
+{% if "http://icons.wxug.com" in c %}	
+	<td><img src='{{c}}' ></td>
+{% else %}
+	<td>{{c}}</td>
+	{% endif %}
+{% endfor %}
+</tr>
+</table>
+	</p>
+</aside>	
+</div>
+
+<h3 style='color: orange'> Stock of your profolio</h3>
+	<section>
+<table border="1" style="width:100%">
+	<tr>
+		<td>Ticker</td>
+		<td>Quote</td>
+		<td>Quatity</td>
+		<td>Price</td>
+	</tr>	
+{%for  c in context%}
+	<tr>
+	{% for a in c %}
+	<td>{{a}}</td>
+	{%endfor%}	
+	</tr>
+{%endfor%}
+</table>
+</section>
+<p> <li>Click <a href="/stock/menu">here</a> return to menu of {{full_name}} stock profilio</li>
+
+	{% endblock %}

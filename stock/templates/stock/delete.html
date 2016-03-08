@@ -1,0 +1,55 @@
+<h1 style="color: DarkOrange ">Hi, welcome to the stock profilio of {{full_name }}</h1>	
+<!--
+<h3 style="color:blue;">Weather Report </h3>
+<aside>	
+<p> 
+<table  border="1" style='color: green; width:100%'>
+	<tr>
+		<td>City</td>
+		<td>State</td>
+		
+		<td>Weather</td>
+		<td>Temp</td>
+		<td>Humid</td>
+		<td>Wind</td>
+		<td>Wind_mph</td>
+	</tr>	
+	<tr>
+	{%for  c in weather%}	
+	{% if "http://icons.wxug.com" in c %}	
+	<td><img src='{{c}}' ></td>
+	{% else %}
+	<td>{{c}}</td>
+	{% endif %}
+	{%endfor%}
+</tr>
+</table>
+	</p>
+</aside>	
+-->
+<h3 style='color: red'> {{full_name}}, please select any ticker id you want to sell, good luck! </h3>
+<table border="1" style="width:100%">
+
+	<tr>
+		<td>Id</td>
+		<td>Ticker</td>
+		
+		<td>Quatity</td>
+		
+	</tr>	
+{%for  c in stock%}
+	<tr>
+	<td> {{c.id}}</td>
+	<td>{{c.quote}}</td>
+	<td>{{c.qty}}</td>
+	</tr>
+{%endfor%}
+</table>
+
+<h3>
+<form method='GET' action=''>
+<input type='number' name='q' placeholder='Select ticker id to sell' value={{ request.get.q}}/>
+<input type='submit'  value='Sell'/>
+</form>
+</h3>
+<p> <li>Click <a href="/stock/menu">here</a> return to menu of {{full_name}} stock profilio</li>

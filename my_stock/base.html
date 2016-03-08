@@ -1,0 +1,25 @@
+<html>
+<head>
+
+	<title>{% block title %} My Base Template {% endblock %}</title>
+
+</head>
+
+<body>
+{% block content %}
+<div>
+	<ul> 
+		<li>
+			<a href="/stock/all">Stock</a>
+		</li>
+
+		<li> <a href="/admin">admin</a></li>
+
+	</ul>	
+	{% endblock %}
+
+</div>
+
+	</body>
+
+</html>

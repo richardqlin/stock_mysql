@@ -1,0 +1,53 @@
+
+<html>
+<body>
+<h2 style="color:Maroon;"> {{user}}, Please purchase any stock you prefer. Thank you, good luck! </h2>	
+<!--
+<h3 style="color:blue;">Weather Report </h3>
+<aside>	
+<p> 
+<table border="1" style='color: green; width:100%'>
+	<tr>
+		<td>City</td>
+		<td>State</td>
+		
+		<td>Weather</td>
+		<td>Temp</td>
+		<td>Humid</td>
+		<td>Wind</td>
+		<td>Wind_mph</td>
+	</tr>	
+	<tr>
+{%for  c in weather%}	
+	{% if "http://icons.wxug.com" in c %}	
+	<td><img src='{{c}}' ></td>
+	
+{% else %}
+	
+	<td>{{c}}</td>
+
+	{% endif %}
+
+{%endfor%}
+</tr>
+</table>
+	</p>
+</aside>	
+
+<h3 style='color: orange'> {{user}}, please purchase any stock you prefer, good luck!</h3>
+-->
+	<form action="/stock/update/" method="post">
+
+	{% csrf_token %}
+
+	{{stock}}
+
+	<input type="submit" Value="Purchase">
+</form>
+
+
+<p> <li>Click <a href="/stock/menu">here</a> return to menu of {{user}} stock profilio</li>
+	
+</body>
+</html>
+	
