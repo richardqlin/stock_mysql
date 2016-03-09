@@ -14,7 +14,7 @@ class Stock(models.Model):
 	quote=models.CharField(max_length=50)
 	qty=models.IntegerField(default=0)
 	#price=models.DecimalField(max_digits=20,decimal_places=5)
-	def __str__(self):
+	def __unicode__(self):
 		return "%s %s %s" %(self.username,self.quote,self.qty)
 	
 #User.stock=property(lambda u: Stock.objects.get_or_create(username=u)[:])

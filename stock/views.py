@@ -84,12 +84,15 @@ def location(request):
 def register_success(request):
 	return render_to_response('register_success.html')
 
-def location_success(request):
+def location_success(request):	
 	return render_to_response('location_success.html',{'name':request.user})
 
 def menu(request):
 	wea=weather(request)
-	return render(request,'menu.html',{'full_name':request.user,'weather':wea})
+	if len(wea)==0:
+		return render(request,'login.html')
+	else:
+		return render(request,'menu.html',{'full_name':request.user,'weather':wea})
 
 def update(request):
 	#wea=weather(request)
@@ -100,20 +103,13 @@ def update(request):
 	#name=str(name)
 	print 'type:',type(name)
 	if request.method=='POST':
-		form=StockForm(request.POST,instance=name)
-		print 'request.method',request.method
-		print 'form:',form
-		print 'form is valid:',form.is_valid
-	
+		form=StockForm(request.POST)
 		if form.is_valid():
-			cd=form.save(commit=False)
-			cd.user=request.user
-			print cd
-			cd.save()
+			form.save()
 			return HttpResponseRedirect('/stock/stock_success/')
 		else:
 			return render(request,'update.html',{'user':request.user,'stock':form})	
-	form=StockForm(instance=name)
+	form=StockForm()
 	return render(request,'update.html',{'user':request.user,'stock':form})
 
 def list(request):
@@ -155,20 +151,17 @@ def delete(request):
 
 def weather(request):
 	location=Location.objects.filter(username=request.user)
+	if location.count()==0:
+		return location
 	list_loc=[]
-	for loc in location:
-		city=loc.city
-		state=loc.state
-		
-		list_loc.append(city)
-		list_loc.append(state)
-		
-	print list_loc
+	city=location[0].city
+	state=location[0].state
+	list_loc.append(city)
+	list_loc.append(state)
 	f=urllib2.urlopen('http://api.wunderground.com/api/f3c442098e60ca9c/conditions/q/'+state+'/'+city+'.json')
-
 	json_string=f.read()
 	parsed_json=json.loads(json_string)
-	print parsed_json
+	#print parsed_json
 	weather=parsed_json['current_observation']['weather']
 	temp=parsed_json['current_observation']['temperature_string']
 	humid=parsed_json['current_observation']["relative_humidity"]
@@ -176,7 +169,6 @@ def weather(request):
 	wind_mph=parsed_json['current_observation']["wind_mph"]
 	image=parsed_json['current_observation']['icon_url']
 	image=str(image)
-	print image
 	list_loc.append(image)
 	list_loc.append(temp)
 	list_loc.append(humid)
