@@ -1,6 +1,6 @@
 from django.shortcuts import render,render_to_response,get_object_or_404
 from googlefinance import getQuotes
-
+from datetime import datetime
 #from django.core.urlresolvers import reverse
 
 from django.http import HttpResponse, Http404, HttpResponseRedirect
@@ -88,14 +88,18 @@ def location_success(request):
 	return render_to_response('location_success.html',{'name':request.user})
 
 def menu(request):
+	time=datetime.now()
+	day=time.strftime('%A')
 	wea=weather(request)
 	if len(wea)==0:
 		return render(request,'login.html')
 	else:
-		return render(request,'menu.html',{'full_name':request.user,'weather':wea})
+		return render(request,'menu.html',{'full_name':request.user,'weather':wea,'time':time,'day':day})
 
 def update(request):
 	#wea=weather(request)
+	time=datetime.now()
+	day=time.strftime('%A')
 	print 'request.user:',request.user
 	print 'request.method',request.method
 	print 'request.POST',request.POST
@@ -108,11 +112,13 @@ def update(request):
 			form.save()
 			return HttpResponseRedirect('/stock/stock_success/')
 		else:
-			return render(request,'update.html',{'user':request.user,'stock':form})	
+			return render(request,'update.html',{'user':request.user,'stock':form,'time':time,'day':day})	
 	form=StockForm()
-	return render(request,'update.html',{'user':request.user,'stock':form})
+	return render(request,'update.html',{'user':request.user,'stock':form,'time':time,'day':day})
 
 def list(request):
+	time=datetime.now()
+	day=time.strftime('%A')
 	wea=weather(request)
 	context=[]
 	stock=Stock.objects.filter(username=request.user)
@@ -132,7 +138,7 @@ def list(request):
 		context_str.append(stk.qty)
 		context_str.append(price)
 		context.append(context_str)
-	return render(request,'list.html',{'full_name':request.user,'context':context,'weather':wea})
+	return render(request,'list.html',{'full_name':request.user,'context':context,'weather':wea,'time':time,'day':day})
 
 def stock_success(request):
 	stock=Stock.objects.filter(username=request.user)
@@ -140,6 +146,8 @@ def stock_success(request):
 	return render_to_response('stock_success.html',{'user':request.user,'stock':stock})
 
 def delete(request):
+	time=datetime.now()
+	day=time.strftime('%A')
 	#wea= weather(request)
 	stock=Stock.objects.filter(username=request.user)
 	page=Stock.objects.filter(username=request.user)
@@ -147,7 +155,7 @@ def delete(request):
 	if query:
 		page=page.get(pk=query)
 		page.delete()	
-	return render(request,'delete.html',{'full_name':request.user,'stock':stock,'q':page})
+	return render(request,'delete.html',{'full_name':request.user,'stock':stock,'q':page,'time':time,'day':day})
 
 def weather(request):
 	location=Location.objects.filter(username=request.user)

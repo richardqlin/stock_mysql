@@ -2,7 +2,7 @@
 
 {% block content %}
 
-	<h2>Please edit {{name}}'s location</h2>
+	<h2>Please edit {{name|capfirst}}'s location</h2>
 
 <form action ='/stock/location/' method='post'>{% csrf_token %} 
 {{form}} 

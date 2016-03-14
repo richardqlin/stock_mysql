@@ -2,7 +2,9 @@
 
 {% block content %}
 
-<h1 style="color:Purple">Hi, welcome to the stock profilio of {{full_name }}</h1>
+<h1 style="color:Purple">Hi, welcome to the stock profilio of {{full_name|capfirst }}</h1>
+<h5 style="color:red">Date Time: {{time}} {{day}}</h5>
+
 <div class='col-md-4 col-md-offset2'>
 <h3 style="color:blue;">Weather Report </h3>
 <aside>	
@@ -51,6 +53,6 @@
 {%endfor%}
 </table>
 </section>
-<p> <li>Click <a href="/stock/menu">here</a> return to menu of {{full_name}} stock profilio</li>
+<p> <li>Click <a href="/stock/menu">here</a> return to menu of {{full_name|capfirst}} stock profilio</li>
 
 	{% endblock %}

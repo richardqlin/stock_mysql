@@ -1,4 +1,6 @@
-<h1 style="color: DarkOrange ">Hi, welcome to the stock profilio of {{full_name }}</h1>	
+<h1 style="color: DarkOrange ">Hi, welcome to the stock profilio of {{full_name|capfirst }}</h1>	
+<h5 style="color:red">Date Time: {{time}} {{day}}</h5>
+
 <!--
 <h3 style="color:blue;">Weather Report </h3>
 <aside>	
@@ -27,7 +29,7 @@
 	</p>
 </aside>	
 -->
-<h3 style='color: red'> {{full_name}}, please select any ticker id you want to sell, good luck! </h3>
+<h3 style='color: red'> {{full_name|capfirst}}, please select any ticker id you want to sell, good luck! </h3>
 <table border="1" style="width:100%">
 
 	<tr>
@@ -52,4 +54,4 @@
 <input type='submit'  value='Sell'/>
 </form>
 </h3>
-<p> <li>Click <a href="/stock/menu">here</a> return to menu of {{full_name}} stock profilio</li>
+<p> <li>Click <a href="/stock/menu">here</a> return to menu of {{full_name|capfirst}} stock profilio</li>

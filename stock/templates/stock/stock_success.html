@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<h2> User Name:{{ user }}</h2>	
+<h2> User Name:{{ user|capfirst }}</h2>	
 
 <ul>Purchase Sucesss</ul>
 <ul>
-	<li> Click <a href="/stock/menu">  menu</a> to {{user}} Menu</li>
+	<li> Click <a href="/stock/menu">  menu</a> to {{user|capfirst}} Menu</li>
 </ul>
 
 	{% endblock %}

@@ -1,7 +1,9 @@
 
 <html>
 <body>
-<h2 style="color:Maroon;"> {{user}}, Please purchase any stock you prefer. Thank you, good luck! </h2>	
+<h2 style="color:Maroon;"> {{user|capfirst}}, Please purchase any stock you prefer. Thank you, good luck! </h2>	
+<h5 style="color:red">Date Time: {{time}} {{day}}</h5>
+
 <!--
 <h3 style="color:blue;">Weather Report </h3>
 <aside>	
@@ -46,7 +48,7 @@
 </form>
 
 
-<p> <li>Click <a href="/stock/menu">here</a> return to menu of {{user}} stock profilio</li>
+<p> <li>Click <a href="/stock/menu">here</a> return to menu of {{user|capfirst}} stock profilio</li>
 	
 </body>
 </html>
